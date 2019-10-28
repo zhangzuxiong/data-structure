@@ -28,6 +28,11 @@ namespace data_structure
             list.Add(2);
             list.Add(3);
             list.Insert(2, 1);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + "\t");
+            }
+            Console.WriteLine();
             list.Add(1);
             Console.WriteLine(list[1]);
             list.RemoveAll(1);
@@ -48,8 +53,16 @@ namespace data_structure
             list.Add(1);
             list.Add(2);
             list.Add(3);
+            //Console.WriteLine(list);
             list.Insert(2, 1);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + "\t");
+            }
+            Console.WriteLine();
+            //Console.WriteLine(list);
             list.Add(1);
+            //Console.WriteLine(list);
             Console.WriteLine(list[1]);
             list.RemoveAll(1);
             Console.WriteLine(list);
@@ -60,6 +73,7 @@ namespace data_structure
             list.RemoveAll(1);
             Console.WriteLine(list.Count);
             Console.WriteLine(list);
+            
         }
 
         static void TestListArray()
@@ -69,6 +83,11 @@ namespace data_structure
             list.Add(2);
             list.Add(3);
             list.Insert(2, 1);
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + "\t");
+            }
+            Console.WriteLine();
             list.Add(1);
             Console.WriteLine(list[1]);
             list.RemoveAll(1);
@@ -80,6 +99,7 @@ namespace data_structure
             list.RemoveAll(1);
             Console.WriteLine(list.Count);
             Console.WriteLine(list);
+            
 
 
             //ArrayList<int> list = new ArrayList<int>();

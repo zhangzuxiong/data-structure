@@ -15,6 +15,8 @@ namespace data_structure
 
         public Node()
         {
+            //default关键字用于表明一个类型的默认值，枚举类型是第一项，结构体是所有字段为default
+            data = default(T);
             next = null;
         }
         public Node(T data)
@@ -26,9 +28,12 @@ namespace data_structure
     }
     interface ILinkList<T>
     {
+        //增
+        void Add(T t);
         void Insert(int index, T data);//插入一个元素到指定的下标位置
 
         //删
+        void Remove(T t);
         void RemoveAt(int index);//根据下标去删除一个元素
         void RemoveAll(T t);//删除这个容器中所有与这个元素相同的元素
 
@@ -49,13 +54,6 @@ namespace data_structure
             get;
         }
 
-
-        //增
-        void Add(T t);
-
-        //删
-        void Remove(T t);
-
     }
 
     public class LinkList<T> : ILinkList<T>
@@ -71,6 +69,7 @@ namespace data_structure
             }
         }
 
+        //索引器
         public T this[int index]
         {
             get
@@ -107,6 +106,11 @@ namespace data_structure
             count = 0;
         }
 
+
+        /// <summary>
+        /// 在链表末尾插入一个元素
+        /// </summary>
+        /// <param name="t"></param>
         public void Add(T t)
         {
             Node<T> temp = new Node<T>(t);
@@ -119,6 +123,10 @@ namespace data_structure
             count++;
         }
 
+        /// <summary>
+        /// 删除链表中指定的第一个元素
+        /// </summary>
+        /// <param name="t"></param>
         public void Remove(T t)
         {
             Node<T> node = head;
@@ -137,14 +145,20 @@ namespace data_structure
             }
         }
 
-
+        /// <summary>
+        /// 在指定的位置插入一个元素
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="data"></param>
         public void Insert(int index, T data)
         {
             if (index < 0 || index > count)
             {
                 throw new Exception("下标越界");
             }
+            //插入的节点
             Node<T> node = head;
+            //插入的前面一个节点
             Node<T> pre = node;
             for (int i = 0; i <= index; i++)
             {
@@ -157,6 +171,10 @@ namespace data_structure
             count++;
         }
 
+        /// <summary>
+        /// 删除指定下标的元素
+        /// </summary>
+        /// <param name="index"></param>
         public void RemoveAt(int index)
         {
             if (index < 0 || index >= count )
@@ -175,6 +193,11 @@ namespace data_structure
 
         }
 
+        /// <summary>
+        /// 获取指定数据的下标
+        /// </summary>
+        /// <param name="t"></param>
+        /// <returns>如果找到了返回下标，否则返回-1</returns>
         int GetIndexByValue(T t)
         {
             Node<T> node = head;
@@ -192,6 +215,10 @@ namespace data_structure
             return -1;
         }
 
+        /// <summary>
+        /// 删除链表中指定的所有元素
+        /// </summary>
+        /// <param name="t"></param>
         public void RemoveAll(T t)
         {
             int index = GetIndexByValue(t);
@@ -203,6 +230,10 @@ namespace data_structure
             RemoveAll(t);
         }
 
+        /// <summary>
+        /// 链表转数组
+        /// </summary>
+        /// <returns></returns>
         public T[] ToArray()
         {
             T[] data = new T[count];
@@ -215,7 +246,7 @@ namespace data_structure
             }
             return data;
         }
-
+        
         public override string ToString()
         {
             return "[" + string.Join(",", ToArray()) + "]";

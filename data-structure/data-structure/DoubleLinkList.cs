@@ -22,6 +22,7 @@ namespace data_structure
 
         public DoubleNode()
         {
+            data = default;
             next = null;
             pre = null;
         }
@@ -135,14 +136,30 @@ namespace data_structure
         /// <param name="data">新加的数据</param>
         public void Add(T data)
         {
-            DoubleNode<T> node = head;
+            /*DoubleNode<T> node = head;
             int i = 0;
             while (node.next!=tail)
             {
                 i++;
                 node = node.next;
             }
-            Insert(i, data);
+            Insert(i, data);*/
+
+            DoubleNode<T> temp = new DoubleNode<T>(data);
+
+            //新节点的pre指向插入节点的pre
+            temp.pre = tail.pre;
+
+            //插入节点的pre的next指向新节点
+            tail.pre.next = temp;
+
+            //插入节点的pre的next指向新节点
+            tail.pre = temp;
+
+            //新节点的next指向插入的节点
+            temp.next = tail;
+
+            count++;
         }
 
         /// <summary>
